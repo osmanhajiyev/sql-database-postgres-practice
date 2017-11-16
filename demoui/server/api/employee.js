@@ -88,51 +88,30 @@ router.get('/employee/:employee_id/payments', function (req, res, next) {
     })
 })
 
-
-router.post('/users/update', bodyParser.json(), function (req, res, next) {
-  const userid = req.body.data.userid
-  const username = req.body.data.username
-  const password = req.body.data.password
-
-  const query = 'UPDATE Users SET username = :username, password = :password WHERE userid = :userid ;'
-  connection.query(query,
-    {
-      type: connection.QueryTypes.UPDATE,
-      replacements: {
-        username: username,
-        password: password,
-        userid: userid
-      }
-    })
-    .then(result => {
-      // result[1] is the number of rows changed
-      res.send('/users')
-    })
-})
-
 router.post('/employee/:employee_id/timetables/add', bodyParser.json(), function (req, res, next) {
-  const employee_id: self.employee_id,
-  const trip_start: self.trip_start,
-  const meal_start: self.meal_start,
-  const wrap_time: self.wrap_time,
-  const trip_end: self.trip_end
+  console.log(req);
+  const employee_id = req.params.employee_id;
+  const travel_start = req.body.data.travel_start;
+  const meal_time = req.body.data.meal_time;
+  const wrap_time = req.body.data.wrap_time;
+  const travel_end = req.body.data.travel_end;
 
-  const query = 'INSERT INTO Timetable (employee_id, trip_start, meal_start, wrap_time, trip_end)' + 
-  'VALUES (:employee_id, :trip_start, :meal_start, :wrap_time, :trip_end);'
+  const query = 'INSERT INTO Timetable (employee_id, travel_start, meal_time, wrap_time, travel_end)' + 
+  'VALUES (:employee_id, :travel_start, :meal_time, :wrap_time, :travel_end);'
   connection.query(query,
     {
       type: connection.QueryTypes.INSERT,
       replacements: {
         employee_id: employee_id,
-        trip_start: trip_start,
-        meal_start: meal_start,
+        travel_start: travel_start,
+        meal_time: meal_time,
         wrap_time: wrap_time,
-        trip_end: trip_end
+        travel_end: travel_end
       }
     })
     .then(result => {
       // result[1] is the number of rows changed
-      res.send('/employee/:employee_id/timetables')
+      res.send('/employee/' + employee_id + '/timetables')
     })
 })
 
