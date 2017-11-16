@@ -2,7 +2,7 @@
   <div class="header">
     <div class="inner">
       <nav class="navbar__menu">
-        <nuxt-link to="/users">Employee</nuxt-link>
+        <nuxt-link to="/employee">Employee</nuxt-link>
         <nuxt-link to="/users">Manager</nuxt-link> 
       </nav>
     </div>
