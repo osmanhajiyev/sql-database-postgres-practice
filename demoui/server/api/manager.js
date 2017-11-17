@@ -6,6 +6,7 @@ const router = Router()
 
 /* GET users listing. */
 router.get('/manager', function (req, res, next) {
+  console.log("reached manager page")
   const query = 'SELECT * FROM manager;'
   connection.query(query, { type: connection.QueryTypes.SELECT })
     .then(manager => {
@@ -15,14 +16,15 @@ router.get('/manager', function (req, res, next) {
 })
 
 /* GET user by ID. */
-router.get('/manager/:Manager_id', function (req, res, next) {
-  const Manager_id = req.params.Manager_id
-  const query = 'SELECT * FROM manager WHERE Manager_id = ' + Manager_id + ';'
+router.get('/manager/:manager_id', function (req, res, next) {
+  console.log("Reached specific manager page function")
+  const manager_id = req.params.manager_id
+  const query = 'SELECT * FROM manager WHERE manager_id = ' + manager_id + ';'
   connection.query(query, 
     { 
       type: connection.QueryTypes.SELECT,
       replacements: {
-        Manager_id: Manager_id
+        manager_id: manager_id
       }
     })
     .then(manager => {
