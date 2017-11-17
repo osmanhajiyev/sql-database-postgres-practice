@@ -4,6 +4,10 @@
       <div class="subsection">
         <span class="manager-id" style="padding: 10px 0 10px 10px; margin: 10px 0 10px 0;">{{ manager.manager_id }}</span>
         <span class="manager-type" style="padding: 10px 10px; margin: 10px 0 10px 0;">{{ `(${manager.manager_type})` }}</span>
+        <div class="action buttons">
+          <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" to="/users/add">Hire Employee</nuxt-link>
+          <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" to="/users/add">Fire Employee</nuxt-link>
+        </div class="actions">
         <nuxt-link :to="{ path: `/manager/${manager.manager_id}/calls`, params: { manager_id: manager.manager_id }}">
           View Calls
         </nuxt-link>
