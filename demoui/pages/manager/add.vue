@@ -8,7 +8,7 @@
         <input type="text" :value="username" v-model="username"></input>
       </div>
     </form>
-    <button type="button" class="button--grey" @click="submitInsert">Add User</button>
+    <button type="button" class="button--grey" @click="submitInsert">Submit</button>
     </div>
   </div>
   </section>
