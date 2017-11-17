@@ -2,17 +2,30 @@
   <section class="timetables-view">
     <div class="content">
       <div class="subsection">
-        <div style="margin: 25px 10px;">
-          <span class="subsection-title" style="vertical-align: middle;">Timetables</span>
-          <nuxt-link :to="{ path: `/employee/${employee_id}/timetables/add`, params: { employee_id: employee_id }}">
+        <div class="subsection-title" style="vertical-align: middle;text-align: center;">Timetables</div>
+          <table style="list-style-type: none; padding: 0; margin: 0; width: 100%;">
+            <tr>
+              <th>Timetable ID</th>
+              <th>Employee ID</th>
+              <th>Travel Start</th>
+              <th>Meal time</th>
+              <th>Wrap time</th>
+              <th>Travel end</th>
+            </tr>
+            <tr v-for="(timetable, index) in timetables" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
+              <td>{{ timetable.timetable_id }}</td>
+              <td>{{ timetable.employee_id }}</td>
+              <td>{{ timetable.travel_start }}</td>
+              <td>{{ timetable.meal_time }}</td>
+              <td>{{ timetable.wrap_time }}</td>
+              <td>{{ timetable.travel_end }}</td>
+            </tr>
+          </table>
+      </div>
+          <nuxt-link class="button--grey" style="float: right; padding: 5px 20px; text-decoration: none;" :to="{ path: `/employee/${employee_id}/timetables/add`, params: { employee_id: employee_id }}">
             Add Timetable
           </nuxt-link>
         </div>
-        <ul style="list-style-type: none; padding: 0; margin: 0;">
-          <li v-for="(timetable, index) in timetables" :key="index" style="padding: 10px 20px; margin: 0 25px; position: relative;">
-            {{timetable.employee_id + ' ' + timetable.timetable_id + ' ' + timetable.travel_start + ' ' + timetable.meal_time + ' ' + timetable.wrap_time + ' ' + timetable.travel_end }}
-          </li>
-        </ul>
       </div>
     </div>
   </section>
@@ -26,10 +39,7 @@ export default {
   asyncData ({ params, error }) {
     return axios.get('/api/employee/' + params.employee_id + '/timetables')
       .then((res) => {
-        return { timetables: res.data, employee_id: res.data[0].employee_id }
-      })
-      .catch((e) => {
-        error({ statusCode: 404, message: 'No timetables found.' })
+        return { timetables: res.data.timetables, employee_id: res.data.employee_id }
       })
   },
   head () {

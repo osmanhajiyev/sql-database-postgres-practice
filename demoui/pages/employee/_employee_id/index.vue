@@ -2,17 +2,33 @@
   <section class="employee-view">
     <div class="content">
       <div class="subsection">
-        <span class="employee-id" style="padding: 10px 0 10px 10px; margin: 10px 0 10px 0;">{{ employee.employee_id }}</span>
-        <span class="employee-name" style="padding: 10px 10px; margin: 10px 0 10px 0;">{{ `(${employee.name})` }}</span>
-        <nuxt-link :to="{ path: `/employee/${employee.employee_id}/calls`, params: { employee_id: employee.employee_id }}">
+      <br>
+        <span class="employee-id" style="padding: 10px 0 10px 10px; margin: 10px 0 10px 0;">{{ `ID: ${employee.employee_id}` }}</span>
+        <nuxt-link class="button--grey" style="position: relative; float: right; padding: 5px 20px; text-decoration: none;" :to="{ path: `/employee/${employee.employee_id}/calls`, params: { employee_id: employee.employee_id }}">
           View Calls
         </nuxt-link>
-        <nuxt-link :to="{ path: `/employee/${employee.employee_id}/timetables`, params: { employee_id: employee.employee_id }}">
+      </br>
+      <br>
+        <span class="employee-name" style="padding: 10px 10px; margin: 10px 0 10px 0;">{{ `Name: ${employee.name}` }}</span>
+        <nuxt-link class="button--grey" style="position: relative; float: right; padding: 5px 20px; text-decoration: none;" :to="{ path: `/employee/${employee.employee_id}/timetables`, params: { employee_id: employee.employee_id }}">
           View Timetables
         </nuxt-link>
-        <nuxt-link :to="{ path: `/employee/${employee.employee_id}/payments`, params: { employee_id: employee.employee_id }}">
+      </br>
+      <br>
+        <span class="employee-name" style="padding: 10px 10px; margin: 10px 0 10px 0;">{{ `Union ID: ${employee.union_id}` }}</span>
+        <nuxt-link class="button--grey" style="float: right; padding: 5px 20px; text-decoration: none;" :to="{ path: `/employee/${employee.employee_id}/payments`, params: { employee_id: employee.employee_id }}">
           View Payment History
         </nuxt-link>
+      </br>
+      <br>
+        <span class="employee-name" style="padding: 10px 10px; margin: 10px 0 10px 0;">{{ `Occupation: ${employee.occupation}` }}</span>
+      </br>
+      <br>
+        <span class="employee-name" style="padding: 10px 10px; margin: 10px 0 10px 0;">{{ `SIN: ${employee.sin}` }}</span>
+      </br>
+      <br>
+        <span class="employee-name" style="padding: 10px 10px; margin: 10px 0 10px 0;">{{ `Hourly rate: ${employee.hourly_rate}` }}</span>
+      </br>
       </div>
     </div>
   </section>

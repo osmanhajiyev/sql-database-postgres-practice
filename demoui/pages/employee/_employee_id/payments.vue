@@ -2,12 +2,20 @@
   <section class="payments-view">
     <div class="content">
       <div class="subsection">
-          <span class="subsection-title" style="vertical-align: middle;">Payment History</span>
-          <ul style="list-style-type: none; padding: 0; margin: 0;">
-            <li v-for="(payment, index) in payments" :key="index" style="padding: 10px 20px; margin: 0 25px; position: relative;">
-              {{ payment.payment_id + ' ' + payment.mname + ' ' + payment.payment_date }}
-            </li>
-          </ul>
+        <div class="subsection-title" style="vertical-align: middle;text-align: center;">Payment History</div>
+          <table style="list-style-type: none; padding: 0; margin: 0; width: 100%;">
+            <tr>
+              <th>Payment ID</th>
+              <th>Manager Name</th>
+              <th>Payment Date</th>
+            </tr>
+            <tr v-for="(payment, index) in payments" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
+              <td>{{ payment.payment_id }}</td>
+              <td>{{ payment.mname }}</td>
+              <td>{{ payment.payment_date }}</td>
+            </tr>
+          </table>
+          </div>
       </div>
     </div>
   </section>
@@ -62,6 +70,9 @@ export default {
     font-size 24px
     font-weight 500
     color #707070
+  td
+    text-align center
+    margin center
   a
     text-decoration underline
     &:hover

@@ -2,12 +2,21 @@
   <section class="calls-view">
     <div class="content">
       <div class="subsection">
-          <span class="subsection-title" style="vertical-align: middle;">Callsheets</span>
-          <ul style="list-style-type: none; padding: 0; margin: 0;">
-            <li v-for="(call, index) in calls" :key="index" style="padding: 10px 20px; margin: 0 25px; position: relative;">
-              {{ call.sheet_id + ' ' + call.mname + ' ' + call.time + ' ' + call.location }}
-            </li>
-          </ul>
+          <div class="subsection-title" style="vertical-align: middle;text-align: center;">Callsheets</div>
+          <table style="list-style-type: none; padding: 0; margin: 0; width: 100%;">
+            <tr>
+              <th>Callsheet ID</th>
+              <th>Manager Name</th>
+              <th>Call time</th>
+              <th>Call Location</th>
+            </tr>
+            <tr v-for="(call, index) in calls" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
+              <td>{{ call.sheet_id }}</td>
+              <td>{{ call.mname }}</td>
+              <td>{{ call.time }}</td>
+              <td>{{ call.location }}</td>
+            </tr>
+          </table>
       </div>
     </div>
   </section>

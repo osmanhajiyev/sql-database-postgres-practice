@@ -65,8 +65,13 @@ router.get('/employee/:employee_id/timetables', function (req, res, next) {
       }
     })
     .then(timetables => {
+      if (timetables.length > 0){
       console.log(timetables)
-      res.json(timetables)
+      res.json({timetables,employee_id})
+    }
+    else {
+        res.json({timetables,employee_id})
+    }
     })
 })
 
@@ -111,7 +116,7 @@ router.post('/employee/:employee_id/timetables/add', bodyParser.json(), function
     })
     .then(result => {
       // result[1] is the number of rows changed
-      res.send('/employee/' + employee_id + '/timetables')
+      res.send('/employee/' + employee_id + '/timetables/success')
     })
 })
 
