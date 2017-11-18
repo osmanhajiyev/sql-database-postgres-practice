@@ -20,6 +20,9 @@
         <nuxt-link :to="{ path: `/manager/cp`, params: { manager_id: manager.manager_id }}">
           View Current Payments
         </nuxt-link>
+        <nuxt-link :to="{ path: `/manager/dpSummary`, params: { manager_id: manager.manager_id }}">
+          Department Summary
+        </nuxt-link>
       </div>
     </div>
   </section>

@@ -5,14 +5,12 @@
         <div class="subsection-title" style="vertical-align: middle;text-align: center;">Payment History</div>
           <table style="list-style-type: none; padding: 0; margin: 0; width: 100%;">
             <tr>
-              <th>Payment ID</th>
-              <th>Emploee ID</th>
-              <th>Payment Date</th>
+              <th>Number of People</th>
+              <th>Department Name</th>
             </tr>
-            <tr v-for="(payment, index) in cp" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
-              <td>{{ payment.payment_id }}</td>
-              <td>{{ payment.employee_id }}</td>
-              <td>{{ payment.payment_date }}</td>
+            <tr v-for="(x, index) in dp" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
+              <td>{{ x.peopleindept }}</td>
+              <td>{{ x.dept_name }}</td>
             </tr>
           </table>
           </div>
@@ -27,9 +25,9 @@ import axios from '~/plugins/axios'
 export default {
   manager_id: 'manager_id',
   asyncData ({ params, error }) {
-    return axios.get('/api/manager/cp')
+    return axios.get('/api/manager/dpSummary')
       .then((res) => {
-        return { cp: res.data }
+        return { dp: res.data }
       })
       .catch((e) => {
         error({ statusCode: 404, message: 'No payment history found.' })
