@@ -15,6 +15,16 @@ router.get('/manager', function (req, res, next) {
     })
 })
 
+router.get('/manager/cp', function (req, res, next) {
+  console.log("reached manager page")
+  const query = 'SELECT * FROM current_payments;'
+  connection.query(query, { type: connection.QueryTypes.SELECT })
+    .then(manager => {
+      console.log(manager)
+      res.json(manager)
+    })
+})
+
 /* GET user by ID. */
 router.get('/manager/:manager_id', function (req, res, next) {
   console.log("Reached specific manager page function")
