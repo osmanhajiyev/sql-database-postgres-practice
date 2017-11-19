@@ -101,7 +101,9 @@ router.post('/manager/fire', bodyParser.json(), function (req, res, next) {
     .then(result => {
       // result[1] is the number of rows changed
       res.send('/manager/success')
-    })
+    }).catch((e) => {
+        res.send('/manager/error')
+      })
 })
 
 router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
@@ -131,7 +133,9 @@ router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
     .then(result => {
       // result[1] is the number of rows changed
       res.send('/manager/success')
-    })
+    }).catch((e) => {
+        res.send('/manager/error')
+      })
 })
 
 router.post('/manager/edit', bodyParser.json(), function (req, res, next) {
@@ -186,7 +190,9 @@ router.post('/manager/edit', bodyParser.json(), function (req, res, next) {
     .then(result => {
       // result[1] is the number of rows changed
       res.send('/manager/success')
-    })
+    }).catch((e) => {
+        res.send('/manager/error')
+      })
 })
 
 export default router
