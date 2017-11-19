@@ -15,7 +15,7 @@
         <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" :to="{ path: `/manager/dpSummary`, params: { manager_id: manager.manager_id }}">
           Department Summary
         </nuxt-link>
-        <nuxt-link :to="{ path: `/manager/${manager.manager_id}/myTime`, params: { manager_id: manager.manager_id }}">
+        <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" :to="{ path: `/manager/${manager.manager_id}/myTime`, params: { manager_id: manager.manager_id }}">
           Given Time Sheets
         </nuxt-link>
       </div>
