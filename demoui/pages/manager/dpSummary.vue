@@ -10,7 +10,7 @@
             </tr>
             <tr v-for="(x, index) in dp" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
               <td>{{ x.peopleindept }}</td>
-              <td>{{ x.dept_name }}</td>
+              <td>{{ x.dept_id }}</td>
             </tr>
           </table>
           </div>

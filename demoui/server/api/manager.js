@@ -27,7 +27,7 @@ router.get('/manager/cp', function (req, res, next) {
 
 router.get('/manager/dpSummary', function (req, res, next) {
   console.log("reached manager page")
-  const query = 'SELECT count(w.Dept_ID) AS PeopleInDept, d.dept_name FROM Employee w, Department d GROUP BY d.dept_name;'
+  const query = 'SELECT count(w.employee_id) AS PeopleInDept, w.dept_id FROM Employee w GROUP BY w.dept_id;'
   connection.query(query, { type: connection.QueryTypes.SELECT })
     .then(manager => {
       console.log(manager)
