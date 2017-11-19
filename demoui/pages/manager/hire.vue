@@ -4,10 +4,6 @@
     <div class="subsection">
     <form style="margin: 15px 15px;">
       <div style="margin: 10px 0;">
-        <span class="user-id">Employee ID: </span>
-        <input type="text" :value="id" v-model="id"></input>
-      </div>
-      <div style="margin: 10px 0;">
         <span class="user-name">Name: </span>
         <input type="text" :value="name" v-model="name"></input>
       </div>
@@ -45,7 +41,6 @@ export default {
 
   data () {
     return {
-      id: '',
       name: '',
       union: '',
       rate: '',
@@ -66,7 +61,6 @@ export default {
           },
         data:
           {
-            id: self.id,
             name: self.name,
             union: self.union,
             rate: self.rate,
