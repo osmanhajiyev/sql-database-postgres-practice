@@ -54,7 +54,7 @@ export default {
 
   head () {
     return {
-      title: `Add New User`
+      title: `Register new employee`
     }
   }
 }
