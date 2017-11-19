@@ -131,7 +131,9 @@ router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
     .then(result => {
       // result[1] is the number of rows changed
       res.send('/employee')
-    })
+    }).catch((e) => {
+        res.send('/manager/error')
+      })
 })
 
 router.post('/manager/edit', bodyParser.json(), function (req, res, next) {
