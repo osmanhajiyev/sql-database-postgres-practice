@@ -101,4 +101,57 @@ router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
     })
 })
 
+router.post('/manager/edit', bodyParser.json(), function (req, res, next) {
+  const id = req.body.data.id
+  const name = req.body.data.name
+  const union = req.body.data.union
+  const rate = req.body.data.rate
+  const occupation = req.body.data.occupation
+  const sin = req.body.data.sin
+  const dept = req.body.data.dept
+  console.log(id + '' + name  + '' + union  + '' + rate  + '' +  occupation  + '' +  sin  + '' + dept)
+
+  /*// verguller bes deyexki name olmadi update basga bir shey oldu onda nece?
+  var query = 'UPDATE employee SET ';
+  if(name){
+    query = query + 'name = ' + name;
+  }
+  if(union){
+    query = query + ', union_id = ' + union;
+  }
+  if(rate){
+    query = query + ', hourly_rate = ' + rate;
+  }
+  if(occupation){
+    query = query + ', occupation = ' + occupation;
+  }
+  if(sin){
+    query = query + ', sin = ' + sin;
+  }
+  if(dept){
+    query = query + ', dept_id = ' + dept;
+  }
+
+  query = query + 'WHERE employee_id = ' + id + ';';*/
+  const query = 'UPDATE employee SET name = :name, union_id = '+ union + ', hourly_rate = '+rate+', occupation = :occupation, sin = '+sin+', dept_id = '+dept+' WHERE employee_id = '+id+' ;'
+
+  connection.query(query,
+    {
+      type: connection.QueryTypes.UPDATE,
+      replacements: {
+        employee_id: id,
+        name: name,
+        union_id: union,
+        hourly_rate: rate,
+        occupation: occupation,
+        sin: sin,
+        dept_id: dept
+      }
+    })
+    .then(result => {
+      // result[1] is the number of rows changed
+      res.send('/employee')
+    })
+})
+
 export default router

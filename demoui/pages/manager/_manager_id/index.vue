@@ -7,6 +7,7 @@
         <div class="action buttons">
           <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" to="/manager/hire">Hire Employee</nuxt-link>
           <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" to="/manager/fire">Fire Employee</nuxt-link>
+          <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" to="/manager/edit">Edit Employee Data</nuxt-link>
         </div class="actions">
         <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" :to="{ path: `/manager/cp`, params: { manager_id: manager.manager_id }}">
           View Current Payments
