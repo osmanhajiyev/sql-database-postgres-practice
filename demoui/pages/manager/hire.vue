@@ -4,8 +4,32 @@
     <div class="subsection">
     <form style="margin: 15px 15px;">
       <div style="margin: 10px 0;">
-        <span class="user-username">Employee ID: </span>
-        <input type="text" :value="username" v-model="username"></input>
+        <span class="user-id">Employee ID: </span>
+        <input type="text" :value="id" v-model="id"></input>
+      </div>
+      <div style="margin: 10px 0;">
+        <span class="user-name">Name: </span>
+        <input type="text" :value="name" v-model="name"></input>
+      </div>
+      <div style="margin: 10px 0;">
+        <span class="user-union">Union ID: </span>
+        <input type="text" :value="union" v-model="union"></input>
+      </div>
+      <div style="margin: 10px 0;">
+        <span class="user-rate">Hourly rate: </span>
+        <input type="text" :value="rate" v-model="rate"></input>
+      </div>
+      <div style="margin: 10px 0;">
+        <span class="user-occupation">Occupation: </span>
+        <input type="text" :value="occupation" v-model="occupation"></input>
+      </div>
+      <div style="margin: 10px 0;">
+        <span class="user-sin">SIN: </span>
+        <input type="text" :value="sin" v-model="sin"></input>
+      </div>
+      <div style="margin: 10px 0;">
+        <span class="user-dept">Department ID: </span>
+        <input type="text" :value="dept" v-model="dept"></input>
       </div>
     </form>
     <button type="button" class="button--grey" @click="submitInsert">Submit</button>
@@ -21,9 +45,13 @@ export default {
 
   data () {
     return {
-      userid: '',
-      username: '',
-      password: ''
+      id: '',
+      name: '',
+      union: '',
+      rate: '',
+      occupation: '',
+      sin: '',
+      dept: ''
     }
   },
 
@@ -31,16 +59,20 @@ export default {
     submitInsert () {
       let self = this
 
-      axios.post('/api/users/add', {
+      axios.post('/api/manager/hire', {
         headers:
           {
             'Content-Type': 'application/json'
           },
         data:
           {
-            userid: self.userid,
-            username: self.username,
-            password: self.password
+            id: self.id,
+            name: self.name,
+            union: self.union,
+            rate: self.rate,
+            occupation: self.occupation,
+            sin: self.sin,
+            dept: self.dept
           }})
         .then((res) => {
           // res.data should contain the url for redirecting... bad practice
@@ -80,11 +112,31 @@ export default {
     margin 25px 10px
     font-size 26px
     font-weight 500
-  .user-username
+  .user-id
     font-size 24px
     font-weight 500
     color #707070
-  .user-password
+  .user-name
+    font-size 24px
+    font-weight 500
+    color #707070
+  .user-union
+    font-size 24px
+    font-weight 500
+    color #707070
+  .user-rate
+    font-size 24px
+    font-weight 500
+    color #707070
+  .user-occupation
+    font-size 24px
+    font-weight 500
+    color #707070
+  .user-sin
+    font-size 24px
+    font-weight 500
+    color #707070
+  .user-dept
     font-size 24px
     font-weight 500
     color #707070

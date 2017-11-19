@@ -71,4 +71,34 @@ router.post('/manager/fire', bodyParser.json(), function (req, res, next) {
     })
 })
 
+router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
+  const id = req.body.data.id
+  const name = req.body.data.name
+  const union = req.body.data.union
+  const rate = req.body.data.rate
+  const occupation = req.body.data.occupation
+  const sin = req.body.data.sin
+  const dept = req.body.data.dept
+  console.log(id + '' + name  + '' + union  + '' + rate  + '' +  occupation  + '' +  sin  + '' + dept)
+
+  const query = 'INSERT INTO employee (employee_id, name, union_id, hourly_rate, occupation, sin, dept_id) VALUES ( ' + id + ', :name, ' + union + ', ' + rate + ', :occupation, ' + sin + ', ' + dept + ') ;'
+  connection.query(query,
+    {
+      type: connection.QueryTypes.INSERT,
+      replacements: {
+        employee_id: id,
+        name: name,
+        union_id: union,
+        hourly_rate: rate,
+        occupation: occupation,
+        sin: sin,
+        dept_id: dept
+      }
+    })
+    .then(result => {
+      // result[1] is the number of rows changed
+      res.send('/employee')
+    })
+})
+
 export default router
