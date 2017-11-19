@@ -8,19 +8,10 @@
           <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" to="/manager/add">Hire Employee</nuxt-link>
           <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" to="/manager/add">Fire Employee</nuxt-link>
         </div class="actions">
-        <nuxt-link :to="{ path: `/manager/${manager.manager_id}/calls`, params: { manager_id: manager.manager_id }}">
-          View Calls
-        </nuxt-link>
-        <nuxt-link :to="{ path: `/manager/${manager.manager_id}/timetables`, params: { manager_id: manager.manager_id }}">
-          View Timetables
-        </nuxt-link>
-        <nuxt-link :to="{ path: `/manager/${manager.manager_id}/payments`, params: { manager_id: manager.manager_id }}">
-          View Payment History
-        </nuxt-link>
-        <nuxt-link :to="{ path: `/manager/cp`, params: { manager_id: manager.manager_id }}">
+        <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" :to="{ path: `/manager/cp`, params: { manager_id: manager.manager_id }}">
           View Current Payments
         </nuxt-link>
-        <nuxt-link :to="{ path: `/manager/dpSummary`, params: { manager_id: manager.manager_id }}">
+        <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" :to="{ path: `/manager/dpSummary`, params: { manager_id: manager.manager_id }}">
           Department Summary
         </nuxt-link>
       </div>

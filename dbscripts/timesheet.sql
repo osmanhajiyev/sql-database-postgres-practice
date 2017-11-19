@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS Employee CASCADE;
-DROP TABLE IF EXISTS Department CASCADE;
+DROP TABLE IF EXISTS EMPLOYEE CASCADE;
+DROP TABLE IF EXISTS DEPARTMENT CASCADE;
 DROP TABLE IF EXISTS Production CASCADE;
 DROP TABLE IF EXISTS Works_on CASCADE;
 DROP TABLE IF EXISTS Manager CASCADE;
@@ -62,6 +62,19 @@ CREATE TABLE Payment (
   Employee_id integer REFERENCES Employee ON DELETE CASCADE,
   Payment_date DATE
   );
+
+CREATE VIEW Current_payments as (
+  SELECT *
+  FROM Payment
+  WHERE date_part('year', Payment_date) = date_part('year', CURRENT_DATE)
+);
+
+CREATE VIEW Current_call_sheets as (
+  SELECT *
+  FROM Call_sheet
+  WHERE date_part('year', Time) = date_part('year', CURRENT_DATE)
+);
+  
 
 INSERT INTO Department (Dept_id, Dept_name) VALUES
   (1000, 'Camera_Lighting'),
@@ -128,6 +141,10 @@ INSERT INTO Production (Prod_id, Prod_company, Prod_title) VALUES
 
   INSERT INTO Payment (Payment_id, Manager_id, Employee_id, Payment_date) VALUES
   (800, 500, 201, '2001-09-11 08:47:00'),
-  (801, 500, 202, '2001-09-11 09:03:00');
+  (801, 500, 202, '2001-09-11 09:03:00'),
+  (802, 500, 201, '2001-09-11 08:47:00'),
+  (803, 500, 202, '2017-09-11 09:03:00'),
+  (804, 500, 201, '2017-08-11 08:47:00'),
+  (805, 500, 202, '2017-07-11 09:03:00');
 
 commit;
