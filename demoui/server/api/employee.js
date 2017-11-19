@@ -117,6 +117,8 @@ router.post('/employee/:employee_id/timetables/add', bodyParser.json(), function
     .then(result => {
       // result[1] is the number of rows changed
       res.send('/employee/' + employee_id + '/timetables/success')
+    }).catch((e) => {
+      res.send('/employee/' + employee_id + '/timetables/error')
     })
 })
 

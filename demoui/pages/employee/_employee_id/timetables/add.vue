@@ -51,7 +51,7 @@ export default {
   },
 
   methods: {
-    submitInsert () {
+    submitInsert (error) {
       let self = this
 
       axios.post('/api/employee/' + self.employee.employee_id + '/timetables/add', {
@@ -72,7 +72,7 @@ export default {
           self.$nuxt.$router.replace({ path: res.data })
         })
         .catch((e) => {
-          console.log(e)
+          error({ statusCode: 404, message: 'INVALID DATA' })
         })
     }
   },
