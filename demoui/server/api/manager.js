@@ -91,65 +91,99 @@ router.get('/employee/:employee_id/calls', function (req, res, next) {
     })
 })
 
-router.get('/employee/:employee_id/timetables', function (req, res, next) {
-  const employee_id = req.params.employee_id
-  const query = 'SELECT t.* FROM timetable t, employee e WHERE e.employee_id = ' + employee_id +
-  ' and t.employee_id = ' + employee_id + ';'
-  connection.query(query, 
-    { 
-      type: connection.QueryTypes.SELECT,
-      replacements: {
-        employee_id: employee_id
-      }
-    })
-    .then(timetables => {
-      console.log(timetables)
-      res.json(timetables)
-    })
-})
-
-router.get('/employee/:employee_id/payments', function (req, res, next) {
-  const employee_id = req.params.employee_id
-  const query = 'SELECT ee.name as mname, p.* FROM payment p, employee e, manager m INNER JOIN employee ee on' +
-  ' m.employee_id = ee.employee_id WHERE e.employee_id = ' + employee_id +
-  ' and p.employee_id = ' + employee_id + ';'
+router.post('/manager/fire', bodyParser.json(), function (req, res, next) {
+  const id = req.body.data.id
+  const query = 'DELETE FROM employee WHERE employee_id = '+ id + ';'
   connection.query(query,
-    { 
-      type: connection.QueryTypes.SELECT,
-      replacements: {
-        employee_id: employee_id
-      }
+    {
+      type: connection.QueryTypes.DELETE
     })
-    .then(timetables => {
-      console.log(timetables)
-      res.json(timetables)
+    .then(result => {
+      // result[1] is the number of rows changed
+      res.send('/employee')
     })
 })
 
-router.post('/employee/:employee_id/timetables/add', bodyParser.json(), function (req, res, next) {
-  console.log(req);
-  const employee_id = req.params.employee_id;
-  const travel_start = req.body.data.travel_start;
-  const meal_time = req.body.data.meal_time;
-  const wrap_time = req.body.data.wrap_time;
-  const travel_end = req.body.data.travel_end;
+router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
+  const id = req.body.data.id
+  const name = req.body.data.name
+  const union = req.body.data.union
+  const rate = req.body.data.rate
+  const occupation = req.body.data.occupation
+  const sin = req.body.data.sin
+  const dept = req.body.data.dept
+  console.log(id + '' + name  + '' + union  + '' + rate  + '' +  occupation  + '' +  sin  + '' + dept)
 
-  const query = 'INSERT INTO Timetable (employee_id, travel_start, meal_time, wrap_time, travel_end)' + 
-  'VALUES (:employee_id, :travel_start, :meal_time, :wrap_time, :travel_end);'
+  const query = 'INSERT INTO employee (employee_id, name, union_id, hourly_rate, occupation, sin, dept_id) VALUES ( ' + id + ', :name, ' + union + ', ' + rate + ', :occupation, ' + sin + ', ' + dept + ') ;'
   connection.query(query,
     {
       type: connection.QueryTypes.INSERT,
       replacements: {
-        employee_id: employee_id,
-        travel_start: travel_start,
-        meal_time: meal_time,
-        wrap_time: wrap_time,
-        travel_end: travel_end
+        employee_id: id,
+        name: name,
+        union_id: union,
+        hourly_rate: rate,
+        occupation: occupation,
+        sin: sin,
+        dept_id: dept
       }
     })
     .then(result => {
       // result[1] is the number of rows changed
-      res.send('/employee/' + employee_id + '/timetables')
+      res.send('/employee')
+    })
+})
+
+router.post('/manager/edit', bodyParser.json(), function (req, res, next) {
+  const id = req.body.data.id
+  const name = req.body.data.name
+  const union = req.body.data.union
+  const rate = req.body.data.rate
+  const occupation = req.body.data.occupation
+  const sin = req.body.data.sin
+  const dept = req.body.data.dept
+  console.log(id + '' + name  + '' + union  + '' + rate  + '' +  occupation  + '' +  sin  + '' + dept)
+
+  /*// verguller bes deyexki name olmadi update basga bir shey oldu onda nece?
+  var query = 'UPDATE employee SET ';
+  if(name){
+    query = query + 'name = ' + name;
+  }
+  if(union){
+    query = query + ', union_id = ' + union;
+  }
+  if(rate){
+    query = query + ', hourly_rate = ' + rate;
+  }
+  if(occupation){
+    query = query + ', occupation = ' + occupation;
+  }
+  if(sin){
+    query = query + ', sin = ' + sin;
+  }
+  if(dept){
+    query = query + ', dept_id = ' + dept;
+  }
+
+  query = query + 'WHERE employee_id = ' + id + ';';*/
+  const query = 'UPDATE employee SET name = :name, union_id = '+ union + ', hourly_rate = '+rate+', occupation = :occupation, sin = '+sin+', dept_id = '+dept+' WHERE employee_id = '+id+' ;'
+
+  connection.query(query,
+    {
+      type: connection.QueryTypes.UPDATE,
+      replacements: {
+        employee_id: id,
+        name: name,
+        union_id: union,
+        hourly_rate: rate,
+        occupation: occupation,
+        sin: sin,
+        dept_id: dept
+      }
+    })
+    .then(result => {
+      // result[1] is the number of rows changed
+      res.send('/employee')
     })
 })
 

@@ -5,7 +5,7 @@
     <form style="margin: 15px 15px;">
       <div style="margin: 10px 0;">
         <span class="user-username">Employee ID: </span>
-        <input type="text" :value="username" v-model="username"></input>
+        <input type="text" :value="id" v-model="id"></input>
       </div>
     </form>
     <button type="button" class="button--grey" @click="submitInsert">Submit</button>
@@ -21,9 +21,7 @@ export default {
 
   data () {
     return {
-      userid: '',
-      username: '',
-      password: ''
+      id: ''
     }
   },
 
@@ -31,16 +29,14 @@ export default {
     submitInsert () {
       let self = this
 
-      axios.post('/api/users/add', {
+      axios.post('/api/manager/fire', {
         headers:
           {
             'Content-Type': 'application/json'
           },
         data:
           {
-            userid: self.userid,
-            username: self.username,
-            password: self.password
+            id: self.id
           }})
         .then((res) => {
           // res.data should contain the url for redirecting... bad practice
@@ -54,7 +50,7 @@ export default {
 
   head () {
     return {
-      title: `Add New User`
+      title: `Employee dismissal page`
     }
   }
 }
@@ -80,11 +76,7 @@ export default {
     margin 25px 10px
     font-size 26px
     font-weight 500
-  .user-username
-    font-size 24px
-    font-weight 500
-    color #707070
-  .user-password
+  .user-id
     font-size 24px
     font-weight 500
     color #707070

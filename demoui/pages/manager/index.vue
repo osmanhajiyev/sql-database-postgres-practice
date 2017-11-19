@@ -7,7 +7,7 @@
         </div>
         <ul style="list-style-type: none; padding: 0; margin: 0;">
           <li v-for="(manager, index) in manager" :key="index" style="padding: 10px 20px; margin: 0 25px; position: relative;">
-          <nuxt-link :to="{ path: `/manager/${manager.manager_id}`, params: { Manager_id: manager.manager_id }}">
+          <nuxt-link class="button--grey" style="padding: 5px 20px; text-decoration: none;" :to="{ path: `/manager/${manager.manager_id}`, params: { Manager_id: manager.manager_id }}">
             {{ manager.manager_id + ' ' + manager.manager_type }}
           </nuxt-link>
           </li>
