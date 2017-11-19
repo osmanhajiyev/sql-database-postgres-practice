@@ -2,7 +2,7 @@
   <section class="payments-view">
     <div class="content">
       <div class="subsection">
-        <div class="subsection-title" style="vertical-align: middle;text-align: center;">Payment History</div>
+        <div class="subsection-title" style="vertical-align: middle;text-align: center;">2017 Payments</div>
           <table style="list-style-type: none; padding: 0; margin: 0; width: 100%;">
             <tr>
               <th>Payment ID</th>
@@ -37,7 +37,7 @@ export default {
   },
   head () {
     return {
-      title: `Payment History`
+      title: `2017 Payments`
     }
   }
 }

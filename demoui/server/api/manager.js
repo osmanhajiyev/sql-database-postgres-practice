@@ -57,6 +57,22 @@ router.get('/manager/:manager_id', function (req, res, next) {
     })
 })
 
+router.get('/manager/:manager_id/myTime', function (req, res, next) {
+  const manager_id = req.params.manager_id
+  const query = "SELECT w.* FROM employee w, timetable c, m_signs_t m WHERE m.manager_id = 500 AND m.timetable_id = c.timetable_id AND c.employee_id = w.employee_id"
+  connection.query(query, 
+    { 
+      type: connection.QueryTypes.SELECT,
+      replacements: {
+        manager_id: manager_id
+      }
+    })
+    .then(calls => {
+      console.log(calls)
+      res.json(calls)
+    })
+})
+
 router.get('/employee/:employee_id/calls', function (req, res, next) {
   const employee_id = req.params.employee_id
   const query = 'SELECT ee.name as mname, c.*, e.* FROM call_sheet c, employee e,' +

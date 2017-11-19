@@ -2,15 +2,19 @@
   <section class="payments-view">
     <div class="content">
       <div class="subsection">
-        <div class="subsection-title" style="vertical-align: middle;text-align: center;">People In Each Department</div>
+        <div class="subsection-title" style="vertical-align: middle;text-align: center;">Time Tables Signed</div>
           <table style="list-style-type: none; padding: 0; margin: 0; width: 100%;">
             <tr>
-              <th>Number of People</th>
-              <th>Department Name</th>
+              <th>Name</th>
+              <th>ID</th>
+              <th>Occupation</th>
+              <th>Department ID</th>
             </tr>
-            <tr v-for="(x, index) in dp" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
-              <td>{{ x.peopleindept }}</td>
-              <td>{{ x.dept_name }}</td>
+            <tr v-for="(y, index) in x" :key="index" style="padding: 10px 20px; margin: 0 25px; text-align: center; position: relative;">
+              <td>{{ y.name }}</td>
+              <td>{{ y.employee_id }}</td>
+              <td>{{ y.occupation }}</td>
+              <td>{{ y.dept_id }}</td>
             </tr>
           </table>
           </div>
@@ -25,9 +29,10 @@ import axios from '~/plugins/axios'
 export default {
   manager_id: 'manager_id',
   asyncData ({ params, error }) {
-    return axios.get('/api/manager/dpSummary')
+    console.log(params.manager_id)
+    return axios.get('/api/manager/' + params.manager_id + '/myTime')
       .then((res) => {
-        return { dp: res.data }
+        return { x: res.data }
       })
       .catch((e) => {
         error({ statusCode: 404, message: 'No payment history found.' })
@@ -35,7 +40,7 @@ export default {
   },
   head () {
     return {
-      title: `People in Each Department`
+      title: `Time Tables Signed`
     }
   }
 }
