@@ -100,8 +100,10 @@ router.post('/manager/fire', bodyParser.json(), function (req, res, next) {
     })
     .then(result => {
       // result[1] is the number of rows changed
-      res.send('/employee')
-    })
+      res.send('/manager/success')
+    }).catch((e) => {
+        res.send('/manager/error')
+      })
 })
 
 router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
@@ -130,7 +132,7 @@ router.post('/manager/hire', bodyParser.json(), function (req, res, next) {
     })
     .then(result => {
       // result[1] is the number of rows changed
-      res.send('/employee')
+      res.send('/manager/success')
     }).catch((e) => {
         res.send('/manager/error')
       })
@@ -168,6 +170,8 @@ router.post('/manager/edit', bodyParser.json(), function (req, res, next) {
   }
 
   query = query + 'WHERE employee_id = ' + id + ';';*/
+
+
   const query = 'UPDATE employee SET name = :name, union_id = '+ union + ', hourly_rate = '+rate+', occupation = :occupation, sin = '+sin+', dept_id = '+dept+' WHERE employee_id = '+id+' ;'
 
   connection.query(query,
@@ -185,8 +189,10 @@ router.post('/manager/edit', bodyParser.json(), function (req, res, next) {
     })
     .then(result => {
       // result[1] is the number of rows changed
-      res.send('/employee')
-    })
+      res.send('/manager/success')
+    }).catch((e) => {
+        res.send('/manager/error')
+      })
 })
 
 export default router
