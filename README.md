@@ -1,4 +1,3 @@
-# CPSC304
 
 ### Demo
 ![alt text](demo.gif "Demo")
